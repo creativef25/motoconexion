@@ -1,45 +1,5 @@
  <!-- Begin Main Header Area -->
  <header class="main-header-area">
-    <div class="header-top border-bottom d-none d-lg-block">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-6">
-                    <div class="header-top-left">
-                        <ul class="dropdown-wrap text-matterhorn">
-                            <li class="dropdown">
-                                <button class="btn btn-link dropdown-toggle ht-btn" type="button" id="languageButton" data-bs-toggle="dropdown" aria-label="language" aria-expanded="false">
-                                    English
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="languageButton">
-                                    <li><a class="dropdown-item" href="#">French</a></li>
-                                    <li><a class="dropdown-item" href="#">Italian</a></li>
-                                    <li><a class="dropdown-item" href="#">Spanish</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <button class="btn btn-link dropdown-toggle ht-btn" type="button" id="currencyButton" data-bs-toggle="dropdown" aria-label="currency" aria-expanded="false">
-                                    USD
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="currencyButton">
-                                    <li><a class="dropdown-item" href="#">GBP</a></li>
-                                    <li><a class="dropdown-item" href="#">ISO</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                Call Us
-                                <a href="tel://3965410">3965410</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="header-top-right text-matterhorn">
-                        <p class="shipping mb-0">Free delivery on order over <span>$200</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="header-middle header-sticky py-6 py-lg-0">
         <div class="container">
             <div class="row align-items-center">
@@ -190,18 +150,8 @@
                                     </button>
                                     <ul class="dropdown-menu right-side" aria-labelledby="settingButton">
                                         <li><a class="dropdown-item" href="my-account.html">My account</a></li>
-                                        <li><a class="dropdown-item" href="login-register.html">Login | Register</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('login')}}">Login | Register</a></li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <a href="#exampleModal" class="search-btn bt" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="pe-7s-search"></i>
-                                    </a>
-                                </li>
-                                <li class="d-none d-lg-block">
-                                    <a href="wishlist.html">
-                                        <i class="pe-7s-like"></i>
-                                    </a>
                                 </li>
                                 <li class="minicart-wrap me-3 me-lg-0">
                                     <a href="#miniCart" class="minicart-btn toolbar-btn">
@@ -228,41 +178,20 @@
                     <a href="#" class="button-close"><i class="pe-7s-close"></i></a>
                 </div>
                 <div class="offcanvas-user-info text-center px-6 pb-5">
-                    <div class=" text-silver">
-                        <p class="shipping mb-0">Free delivery on order over <span class="text-primary">$200</span></p>
-                    </div>
                     <ul class="dropdown-wrap justify-content-center text-silver">
-                        <li class="dropdown dropup">
-                            <button class="btn btn-link dropdown-toggle ht-btn" type="button" id="languageButtonTwo" data-bs-toggle="dropdown" aria-expanded="false">
-                                English
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="languageButtonTwo">
-                                <li><a class="dropdown-item" href="#">French</a></li>
-                                <li><a class="dropdown-item" href="#">Italian</a></li>
-                                <li><a class="dropdown-item" href="#">Spanish</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown dropup">
-                            <button class="btn btn-link dropdown-toggle ht-btn usd-dropdown" type="button" id="currencyButtonTwo" data-bs-toggle="dropdown" aria-expanded="false">
-                                USD
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="currencyButtonTwo">
-                                <li><a class="dropdown-item" href="#">GBP</a></li>
-                                <li><a class="dropdown-item" href="#">ISO</a></li>
-                            </ul>
-                        </li>
                         <li class="dropdown dropup">
                             <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButtonTwo" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="pe-7s-users"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingButtonTwo">
                                 <li><a class="dropdown-item" href="my-account.html">My account</a></li>
-                                <li><a class="dropdown-item" href="login-register.html">Login | Register</a></li>
+                                <li><a class="dropdown-item" href="{{ route('login')}}">Login | Register</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="wishlist.html">
-                                <i class="pe-7s-like"></i>
+                                <i class="pe-7s-shopbag"></i>
+                                <span class="quantity">5</span>
                             </a>
                         </li>
                     </ul>

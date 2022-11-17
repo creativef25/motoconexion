@@ -28,7 +28,7 @@ class HomeController extends Controller
         if ($hola->name == 'admin') {
             return view('home');
         } else {
-            return view('home');
+            return view('motoconexion.perfil');
         }
         
     }

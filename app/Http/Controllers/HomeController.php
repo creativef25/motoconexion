@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Marca;
+use App\Categoria;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,8 @@ class HomeController extends Controller
 
         if ($hola->name == 'admin') {
             $marcas = Marca::all();
-            return view('motoconexion.administrador', compact('marcas'));
+            $categorias = Categoria::all();
+            return view('motoconexion.administrador', compact('marcas', 'categorias'));
         } else {
             return view('motoconexion.perfil');
         }

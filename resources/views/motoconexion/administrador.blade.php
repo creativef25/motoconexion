@@ -32,7 +32,7 @@
                             <a class="nav-link" id="account-marca-tab" data-bs-toggle="tab" href="#account-marca" role="tab" aria-controls="account-marca" aria-selected="false">Marca</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="account-producto-tab" data-bs-toggle="tab" href="#account-producto" role="tab" aria-controls="account-producto" aria-selected="false">Producto</a>
+                            <a class="nav-link" id="account-categoria-tab" data-bs-toggle="tab" href="#account-categoria" role="tab" aria-controls="account-categoria" aria-selected="false">Categoria</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="account-orders-tab" data-bs-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">Orders</a>
@@ -105,8 +105,52 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="account-producto" role="tabpane" aria-labelledby="account-producto-tab">
-                            
+                        <div class="tab-pane fade" id="account-categoria" role="tabpane" aria-labelledby="account-categoria-tab">
+                            <div class="myaccount-details">
+                                <h4 class="small-title">Categorias</h4>
+                                <form action="{{ route('guardarCategoria')}}" method="post" class="myaccount-form">
+                                    @csrf
+                                    <div class="myaccount-form-inner">
+                                        <div class="single-input single-input-half">
+                                            <label>Nombre</label>
+                                            <input type="text" name="nombre" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <button class="btn btn-custom-size lg-size btn-primary" type="submit">
+                                                <span>Guardar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="myaccount-orders">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Nombre</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                            @foreach ($categorias as $categoria)
+                                            <tr>
+                                                <td>{{$categoria->id}}</td>
+                                                <td>{{$categoria->nombre}}</td>
+                                                <td>
+                                                    <form action="{{ route('eliminarCategoria', $categoria->id)}}" method="post">
+                                                        <a href="" class="btn btn-dark btn-primary-hover" data-bs-toggle="modal" data-bs-target="#quickModall{{$categoria->id}}"><i class="pe-7s-note"></i></a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-dark btn-primary-hover"><i class="pe-7s-trash"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                                
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>                            
                         </div>
                         <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">
                             <div class="myaccount-orders">
@@ -223,6 +267,35 @@
                         <div class="single-input single-input-half">
                             <label>Nombre</label>
                             <input type="text" name="nombre" value="{{$marca->nombre}}">
+                        </div>
+                        <div class="single-input single-input-half">
+                            <button class="btn btn-custom-size lg-size btn-primary" type="submit">
+                                <span>Guardar</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+@foreach ($categorias as $categoria)
+<div class="modal fade" id="quickModall{{$categoria->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="quickModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('actualizarCategoria', $categoria->id)}}" class="myaccount-form">
+                    @csrf
+                    @method('PUT')
+                    <div class="myaccount-form-inner">
+                        <div class="single-input single-input-half">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" value="{{$categoria->nombre}}">
                         </div>
                         <div class="single-input single-input-half">
                             <button class="btn btn-custom-size lg-size btn-primary" type="submit">

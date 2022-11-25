@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Marca;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
         $hola = $re->user()->authorizeRoles(['user', 'admin']);
 
         if ($hola->name == 'admin') {
-            return view('home');
+            $marcas = Marca::all();
+            return view('motoconexion.administrador', compact('marcas'));
         } else {
             return view('motoconexion.perfil');
         }

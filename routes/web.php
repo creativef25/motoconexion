@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('guardar-marca', 'MarcaController@guardarMarca')->name('guardarMarca');
+Route::delete('eliminar-marca/{id}', 'MarcaController@eliminarMarca')->name('eliminarMarca');
+Route::put('actualizar-marca/{id}', 'MarcaController@actualizarMarca')->name('actualizarMarca');

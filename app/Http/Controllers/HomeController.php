@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Marca;
 use App\Categoria;
 use App\Producto;
+use App\Image;
 
 class HomeController extends Controller
 {
@@ -32,7 +33,8 @@ class HomeController extends Controller
             $marcas = Marca::all();
             $categorias = Categoria::all();
             $productos = Producto::all();
-            return view('motoconexion.administrador', compact('marcas', 'categorias', 'productos'));
+            $imagenes = Image::all();
+            return view('motoconexion.administrador', compact('marcas', 'categorias', 'productos', 'imagenes'));
         } else {
             return view('motoconexion.perfil');
         }

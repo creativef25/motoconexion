@@ -38,6 +38,9 @@
                             <a class="nav-link" id="account-producto-tab" data-bs-toggle="tab" href="#account-producto" role="tab" aria-controls="account-producto" aria-selected="false">Producto</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" id="account-images-tab" data-bs-toggle="tab" href="#account-images" role="tab" aria-controls="account-images" aria-selected="false">Imagenes</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" id="account-orders-tab" data-bs-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">Orders</a>
                         </li>
                         <li class="nav-item">
@@ -211,7 +214,7 @@
                             </div>
                             <div class="myaccount-orders">
                                 <div class="table-responsive">
-                                    <table class="table table-boredered table-hover">
+                                    <table class="table table-bordered table-hover">
                                         <tbody>
                                             <tr>
                                                 <th>Id</th>
@@ -237,6 +240,87 @@
                                                 <td>
                                                     <form action="{{ route('eliminarProducto', $producto->id)}}" method="post">
                                                         <a href="" class="btn btn-dark btn-primary-hover" data-bs-toggle="modal" data-bs-target="#quickModal2{{$producto->id}}"><i class="pe-7s-note"></i></a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-dark btn-primary-hover"><i class="pe-7s-trash"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>                                                
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="account-images" role="tabpane" aria-labelledby="account-images-tab">
+                            <div class="myaccount-details">
+                                <h4 class="small-title">Imagenes</h4>
+                                <form action="{{ route('guardarImagen')}}" method="post" class="myaccount-form" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="myaccount-form-inner">
+                                        <div class="single-input single-input-half">
+                                            <label>Nombre</label>
+                                            <input type="text" name="nombre" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Imagen</label>
+                                            <input type="file" name="imagen">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <div class="coutry-select clearfix">
+                                                <label>Producto</label>
+                                                <select name="id_producto" class="myniceselect nice-select wide">
+                                                    <option value="0" selected>Selecciona una opcion</option>
+                                                    @foreach ($productos as $producto)
+                                                    <option value="{{$producto->id}}">{{$producto->nombre}}</option>                                                        
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <div class="form-check">
+                                               <label class="form-check-label" for="imgPrincipal">Imagen Principal</label>
+                                               <input class="form-check-input" type="checkbox" name="imgPrincipal" value="1" id="imgPrincipal">
+                                            </div>
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="banner">Imagen Para Banner</label>
+                                                <input class="form-check-input" type="checkbox" name="banner" value="1" id="banner">
+                                            </div>
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <button class="btn btn-custom-size lg-size btn-primary" type="submit">
+                                                <span>Guardar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="myaccount-orders">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Path</th>
+                                                <th>Producto</th>
+                                                <th>Imagen Principal</th> 
+                                                <th>Banner</th>
+                                                <th>Nombre</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                            @foreach ($imagenes as $imagen)
+                                            <tr>
+                                                <td>{{$imagen->id}}</td>
+                                                <td>{{$imagen->path}}</td>
+                                                <td>{{$imagen->id_producto}}</td>
+                                                <td>{{$imagen->imgPrincipal == 1 ? "SI" : "NO"}}</td>
+                                                <td>{{$imagen->banner == 1 ? "SI" : "NO"}}</td>
+                                                <td>{{$imagen->nombre}}</td>
+                                                <td>
+                                                    <form action="" method="post">
+                                                        <a href="" class="btn btn-dark btn-primary-hover" data-bs-toggle="modal" data-bs-target="#quickModal3{{$imagen->id}}"><i class="pe-7s-note"></i></a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-dark btn-primary-hover"><i class="pe-7s-trash"></i></button>
@@ -470,6 +554,28 @@
         </div>
     </div>
 </div>    
+@endforeach
+
+@foreach ($imagenes as $imagen)
+<div class="modal fade" id="quickModal3{{$imagen->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="quickModal" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post">
+                @csrf
+                @method('PUT')
+                <div class="myaccount-form-inner">
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+    
 @endforeach
     
 @endsection

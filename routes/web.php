@@ -29,3 +29,5 @@ Route::put('actualizar-categoria/{id}', 'CategoriaController@actualizarCategoria
 Route::post('guardar-producto', 'ProductoController@guardarProducto')->name('guardarProducto');
 Route::delete('eliminar-producto/{id}', 'ProductoController@eliminarProducto')->name('eliminarProducto');
 Route::put('actualizar-producto/{id}', 'ProductoController@actualizarProducto')->name('actualizarProducto');
+
+Route::post('guardar-imagen', 'ImageController@guardarImagen')->name('guardarImagen');

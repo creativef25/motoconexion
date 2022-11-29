@@ -25,3 +25,7 @@ Route::put('actualizar-marca/{id}', 'MarcaController@actualizarMarca')->name('ac
 Route::post('guardar-categoria', 'CategoriaController@guardarCategoria')->name('guardarCategoria');
 Route::delete('eliminar-categoria/{id}', 'CategoriaController@eliminarCategoria')->name('eliminarCategoria');
 Route::put('actualizar-categoria/{id}', 'CategoriaController@actualizarCategoria')->name('actualizarCategoria');
+
+Route::post('guardar-producto', 'ProductoController@guardarProducto')->name('guardarProducto');
+Route::delete('eliminar-producto/{id}', 'ProductoController@eliminarProducto')->name('eliminarProducto');
+Route::put('actualizar-producto/{id}', 'ProductoController@actualizarProducto')->name('actualizarProducto');

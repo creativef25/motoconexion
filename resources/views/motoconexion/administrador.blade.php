@@ -35,6 +35,9 @@
                             <a class="nav-link" id="account-categoria-tab" data-bs-toggle="tab" href="#account-categoria" role="tab" aria-controls="account-categoria" aria-selected="false">Categoria</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" id="account-producto-tab" data-bs-toggle="tab" href="#account-producto" role="tab" aria-controls="account-producto" aria-selected="false">Producto</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" id="account-orders-tab" data-bs-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">Orders</a>
                         </li>
                         <li class="nav-item">
@@ -151,6 +154,100 @@
                                     </table>
                                 </div>
                             </div>                            
+                        </div>
+                        <div class="tab-pane fade" id="account-producto" role="tabpane" aria-labelledby="account-producto-tab">
+                            <div class="myaccount-details">
+                                <h4 class="small-title">Producto</h4>
+                                <form action="{{ route('guardarProducto')}}" method="post" class="myaccount-form">
+                                    @csrf
+                                    <div class="myaccount-form-inner">
+                                        <div class="single-input single-input-half">
+                                            <label>Nombre</label>
+                                            <input type="text" name="nombre" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Clave</label>
+                                            <input type="text" name="clave" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Modelo</label>
+                                            <input type="text" name="modelo" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Precio</label>
+                                            <input type="text" name="precio" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <div class="country-select clearfix">
+                                                <label>Marca</label>
+                                                <select name="id_marca" class="myniceselect nice-select wide">
+                                                    @foreach ($marcas as $marca)
+                                                        <option value="{{$marca->id}}">{{$marca->nombre}}</option>                                                        
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <div class="country-select clearfix">
+                                                <label>Categoria</label>
+                                                <select name="id_categoria" class="myniceselect nice-select wide">
+                                                    @foreach ($categorias as $categoria)
+                                                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>                                                        
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="single-input">
+                                            <label>Descripcion</label>
+                                            <textarea name="descripcion" id="" cols="30" rows="10"></textarea>
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <button class="btn btn-custom-size lg-size btn-primary" type="submit">
+                                                <span>Guardar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="myaccount-orders">
+                                <div class="table-responsive">
+                                    <table class="table table-boredered table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Nombre</th>
+                                                <th>Clave</th>
+                                                <th>Modelo</th>
+                                                <th>Precio</th>
+                                                <th>Marca</th>
+                                                <th>Categoria</th>
+                                                <th>Descripcion</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                            @foreach ($productos as $producto)
+                                            <tr>
+                                                <td>{{$producto->id}}</td>
+                                                <td>{{$producto->nombre}}</td>
+                                                <td>{{$producto->clave}}</td>
+                                                <td>{{$producto->modelo}}</td>
+                                                <td>{{$producto->precio}}</td>
+                                                <td>{{$producto->id_marca}}</td>
+                                                <td>{{$producto->id_categoria}}</td>
+                                                <td>{{$producto->descripcion}}</td>
+                                                <td>
+                                                    <form action="{{ route('eliminarProducto', $producto->id)}}" method="post">
+                                                        <a href="" class="btn btn-dark btn-primary-hover" data-bs-toggle="modal" data-bs-target="#quickModal2{{$producto->id}}"><i class="pe-7s-note"></i></a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-dark btn-primary-hover"><i class="pe-7s-trash"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>                                                
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">
                             <div class="myaccount-orders">
@@ -308,6 +405,71 @@
         </div>
     </div>
 </div>
+@endforeach
+
+@foreach ($productos as $producto)
+<div class="modal fade" id="quickModal2{{$producto->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="quickModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('actualizarProducto', $producto->id)}}" method="post" class="myaccount-form">
+                    @csrf
+                    @method('PUT')
+                    <div class="myaccount-form-inner">
+                        <div class="single-input single-input-half">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" value="{{$producto->nombre}}">
+                        </div>
+                        <div class="single-input single-input-half">
+                            <label>Clave</label>
+                            <input type="text" name="clave" value="{{$producto->clave}}">
+                        </div>
+                        <div class="single-input single-input-half">
+                            <label>Modelo</label>
+                            <input type="text" name="modelo" value="{{$producto->modelo}}">
+                        </div>
+                        <div class="single-input single-input-half">
+                            <label>Precio</label>
+                            <input type="text" name="precio" value="{{$producto->precio}}">
+                        </div>
+                        <div class="single-input single-input-half">
+                            <div class="country-select clearfix">
+                                <label>Marca</label>
+                                <select name="id_marca" class="myniceselect nice-select wide">
+                                    @foreach ($marcas as $marca)
+                                        <option value="{{$marca->id}}">{{$marca->nombre}}</option>                                                        
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="single-input single-input-half">
+                            <div class="country-select clearfix">
+                                <label>Categoria</label>
+                                <select name="id_categoria" class="myniceselect nice-select wide">
+                                    @foreach ($categorias as $categoria)
+                                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>                                                        
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="single-input">
+                            <label>Descripcion</label>
+                            <textarea name="descripcion" id="" cols="30" rows="10">{{$producto->descripcion}}</textarea>
+                        </div>
+                        <div class="single-input single-input-half">
+                            <button class="btn btn-custom-size lg-size btn-primary" type="submit">
+                                <span>Guardar</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>    
 @endforeach
     
 @endsection

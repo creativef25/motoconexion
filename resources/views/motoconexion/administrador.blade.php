@@ -319,7 +319,7 @@
                                                 <td>{{$imagen->banner == 1 ? "SI" : "NO"}}</td>
                                                 <td>{{$imagen->nombre}}</td>
                                                 <td>
-                                                    <form action="" method="post">
+                                                    <form action="{{ route('eliminarImagen', $imagen->id)}}" method="post">
                                                         <a href="" class="btn btn-dark btn-primary-hover" data-bs-toggle="modal" data-bs-target="#quickModal3{{$imagen->id}}"><i class="pe-7s-note"></i></a>
                                                         @csrf
                                                         @method('DELETE')
@@ -564,11 +564,46 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="" method="post">
+            <form action="{{ route('actualizarImagen', $imagen->id)}}" method="post" class="myaccount-form" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="myaccount-form-inner">
-                    
+                    <div class="single-input single-input-half">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" value="{{$imagen->nombre}}">
+                    </div>
+                    <div class="single-input single-input-half">
+                        <label>Imagen</label>
+                        <input type="file" name="imagen">
+                    </div>
+                    <div class="single-input single-input-half">
+                        <div class="coutry-select clearfix">
+                            <label>Producto</label>
+                            <select name="id_producto" class="myniceselect nice-select wide">
+                                <option value="0" selected>Selecciona una opcion</option>
+                                @foreach ($productos as $producto)
+                                <option value="{{$producto->id}}" {{ $imagen->id_producto == $producto->id ? "selected" : ""}}>{{$producto->nombre}}</option>                                                        
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="single-input single-input-half">
+                        <div class="form-check">
+                           <label class="form-check-label" for="imgPrincipal">Imagen Principal</label>
+                           <input class="form-check-input" type="checkbox" name="imgPrincipal" value="1" id="imgPrincipal" {{ $imagen->imgPrincipal == 1 ? "checked" : ""}}>
+                        </div>
+                    </div>
+                    <div class="single-input single-input-half">
+                        <div class="form-check">
+                            <label class="form-check-label" for="banner">Imagen Para Banner</label>
+                            <input class="form-check-input" type="checkbox" name="banner" value="1" id="banner" {{ $imagen->banner == 1 ? "checked" : ""}}>
+                        </div>
+                    </div>
+                    <div class="single-input single-input-half">
+                        <button class="btn btn-custom-size lg-size btn-primary" type="submit">
+                            <span>Guardar</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

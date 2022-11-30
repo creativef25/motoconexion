@@ -31,3 +31,5 @@ Route::delete('eliminar-producto/{id}', 'ProductoController@eliminarProducto')->
 Route::put('actualizar-producto/{id}', 'ProductoController@actualizarProducto')->name('actualizarProducto');
 
 Route::post('guardar-imagen', 'ImageController@guardarImagen')->name('guardarImagen');
+Route::delete('eliminar-imagen/{id}', 'ImageController@eliminarImagen')->name('eliminarImagen');
+Route::put('actualizar-imagen/{id}', 'ImageController@actualizarImagen')->name('actualizarImagen');

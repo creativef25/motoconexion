@@ -29,6 +29,9 @@
                             <a class="nav-link active" id="account-dashboard-tab" data-bs-toggle="tab" href="#account-dashboard" role="tab" aria-controls="account-dashboard" aria-selected="true">Dashboard</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" id="account-perfil-tab" data-bs-toggle="tab" href="#account-perfil" role="tab" aria-controls="account-dashboard">Perfil</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" id="account-orders-tab" data-bs-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">Orders</a>
                         </li>
                         <li class="nav-item">
@@ -51,6 +54,61 @@
                                         out</a>)</p>
                                 <p>From your account dashboard you can view your recent orders, manage your shipping and
                                     billing addresses and <a href="#">edit your password and account details</a>.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="account-perfil" role="tabpanel" aria-labelledby="account-perfil-tab">
+                            <div class="myaccount-details">
+                                <h4 class="small-title">Perfil</h4>
+                                <form action="" method="post" class="myaccount-form">
+                                    @csrf
+                                    <div class="myaccount-form-inner">
+                                        <div class="single-input single-input-half">
+                                            <label>Nombre</label>
+                                            <input type="text" name="nombre" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Apellido Paterno</label>
+                                            <input type="text" name="ape_Paterno" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Apellido Materno</label>
+                                            <input type="text" name="ape_Materno" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Telefono</label>
+                                            <input type="text" name="telefono" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Edad</label>
+                                            <input type="text" name="edad" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Calle</label>
+                                            <input type="text" name="calle" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Ciudad</label>
+                                            <input type="text" name="ciudad" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Colonia</label>
+                                            <input type="text" name="colonia" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Alcaldia</label>
+                                            <input type="text" name="alcaldia" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <label>Codigo Postal</label>
+                                            <input type="text" name="codigoPostal" value="">
+                                        </div>
+                                        <div class="single-input single-input-half">
+                                            <button class="btn btn-custom-size lg-size btn-primary" type="submit">
+                                                <span>Guardar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">

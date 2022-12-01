@@ -70,4 +70,8 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function datos(){
+        return $this->hasOne('App\Dato', 'id_usuario', 'id');
+    }
 }

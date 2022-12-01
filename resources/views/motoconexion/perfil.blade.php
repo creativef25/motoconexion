@@ -59,48 +59,48 @@
                         <div class="tab-pane fade" id="account-perfil" role="tabpanel" aria-labelledby="account-perfil-tab">
                             <div class="myaccount-details">
                                 <h4 class="small-title">Perfil</h4>
-                                <form action="" method="post" class="myaccount-form">
+                                <form action="{{ route('guardarDatos')}}" method="post" class="myaccount-form">
                                     @csrf
                                     <div class="myaccount-form-inner">
                                         <div class="single-input single-input-half">
                                             <label>Nombre</label>
-                                            <input type="text" name="nombre" value="">
+                                            <input type="text" name="nombre" value="{{ empty(Auth::user()->datos->nombre) ? " " : Auth::user()->datos->nombre}}">
                                         </div>
                                         <div class="single-input single-input-half">
                                             <label>Apellido Paterno</label>
-                                            <input type="text" name="ape_Paterno" value="">
+                                            <input type="text" name="ape_Paterno" value="{{ empty(Auth::user()->datos->ape_Paterno) ? "" : Auth::user()->datos->ape_Paterno}}">
                                         </div>
                                         <div class="single-input single-input-half">
                                             <label>Apellido Materno</label>
-                                            <input type="text" name="ape_Materno" value="">
+                                            <input type="text" name="ape_Materno" value="{{ empty(Auth::user()->datos->ape_Materno) ? "" : Auth::user()->datos->ape_Materno}}">
                                         </div>
                                         <div class="single-input single-input-half">
                                             <label>Telefono</label>
-                                            <input type="text" name="telefono" value="">
+                                            <input type="text" name="telefono" value="{{ empty(Auth::user()->datos->telefono) ? "" : Auth::user()->datos->telefono}}">
                                         </div>
                                         <div class="single-input single-input-half">
                                             <label>Edad</label>
-                                            <input type="text" name="edad" value="">
+                                            <input type="text" name="edad" value="{{ empty(Auth::user()->datos->edad) ? "" : Auth::user()->datos->edad}}">
                                         </div>
                                         <div class="single-input single-input-half">
                                             <label>Calle</label>
-                                            <input type="text" name="calle" value="">
+                                            <input type="text" name="calle" value="{{ empty(Auth::user()->datos->calle) ? "" : Auth::user()->datos->calle}}" {{ empty(Auth::user()->datos->calle) ? "" : "disabled"}}>
                                         </div>
                                         <div class="single-input single-input-half">
                                             <label>Ciudad</label>
-                                            <input type="text" name="ciudad" value="">
+                                            <input type="text" name="ciudad" value="{{ empty(Auth::user()->datos->ciudad) ? "" : Auth::user()->datos->ciudad}}" {{ empty(Auth::user()->datos->ciudad) ? "" : "disabled"}}>
                                         </div>
                                         <div class="single-input single-input-half">
                                             <label>Colonia</label>
-                                            <input type="text" name="colonia" value="">
+                                            <input type="text" name="colonia" value="{{ empty(Auth::user()->datos->colonia) ? "" : Auth::user()->datos->colonia}}" {{ empty(Auth::user()->datos->colonia) ? "" : "disabled"}}>
                                         </div>
                                         <div class="single-input single-input-half">
                                             <label>Alcaldia</label>
-                                            <input type="text" name="alcaldia" value="">
+                                            <input type="text" name="alcaldia" value="{{ empty(Auth::user()->datos->alcaldia) ? "" : Auth::user()->datos->alcaldia}}" {{ empty(Auth::user()->datos->alcaldia) ? "" : "disabled"}}>
                                         </div>
                                         <div class="single-input single-input-half">
                                             <label>Codigo Postal</label>
-                                            <input type="text" name="codigoPostal" value="">
+                                            <input type="text" name="codigoPostal" value="{{ empty(Auth::user()->datos->codigoPostal) ? "" : Auth::user()->datos->codigoPostal}}" {{ empty(Auth::user()->datos->codigoPostal) ? "" : "disabled"}}>
                                         </div>
                                         <div class="single-input single-input-half">
                                             <button class="btn btn-custom-size lg-size btn-primary" type="submit">

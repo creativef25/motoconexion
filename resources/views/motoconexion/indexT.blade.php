@@ -1,4 +1,4 @@
-@extends('index')
+@extends('index') 
 @section('container')
 
 <!-- Begin Slider Area -->
@@ -77,81 +77,20 @@
 <div class="product-area section-space-top-100">
     <div class="container">
         <div class="section-title style-2 pb-55">
-            <h2 class="title mb-0">Top Category</h2>
+            <h2 class="title mb-0">Categorias</h2>
         </div>
         <div class="row">
-            <div class="product-custom-col col-12">
-                <div class="product-category-item">
-                    <a class="product-category-img img-zoom-effect" href="shop.html">
-                        <img src="{{ asset('motoconexion/assets/images/product/top-category/1-1-180x180.png')}}" alt="Top Category">
-                    </a>
-                    <div class="product-category-content pt-5">
-                        <h2 class="title">
-                            <a href="shop.html">Tail Light</a>
-                        </h2>
+            @foreach ($categorias as $categoria)
+                <div class="product-custom-col col-12">
+                    <div class="product-category-item">
+                        <div class="product-category-content pt-5">
+                            <h2 class="title">
+                                <a href="">{{$categoria->nombre}}</a>
+                            </h2>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="product-custom-col col-12">
-                <div class="product-category-item">
-                    <a class="product-category-img img-zoom-effect" href="shop.html">
-                        <img src="{{ asset('motoconexion/assets/images/product/top-category/1-2-180x180.png')}}" alt="Top Category">
-                    </a>
-                    <div class="product-category-content pt-5">
-                        <h2 class="title">
-                            <a href="shop.html">Wiper Blades</a>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="product-custom-col col-12 pt-4 pt-sm-0">
-                <div class="product-category-item">
-                    <a class="product-category-img img-zoom-effect" href="shop.html">
-                        <img src="{{ asset('motoconexion/assets/images/product/top-category/1-3-180x180.png')}}" alt="Top Category">
-                    </a>
-                    <div class="product-category-content pt-5">
-                        <h2 class="title">
-                            <a href="shop.html">Suspension</a>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="product-custom-col col-12 pt-4 pt-lg-0">
-                <div class="product-category-item">
-                    <a class="product-category-img img-zoom-effect" href="shop.html">
-                        <img src="{{ asset('motoconexion/assets/images/product/top-category/1-4-180x180.png')}}" alt="Top Category">
-                    </a>
-                    <div class="product-category-content pt-5">
-                        <h2 class="title">
-                            <a href="shop.html">Air Filter</a>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="product-custom-col col-12 pt-4 pt-lg-0">
-                <div class="product-category-item">
-                    <a class="product-category-img img-zoom-effect" href="shop.html">
-                        <img src="{{ asset('motoconexion/assets/images/product/top-category/1-5-180x180.png')}}" alt="Top Category">
-                    </a>
-                    <div class="product-category-content pt-5">
-                        <h2 class="title">
-                            <a href="shop.html">Car Brakes</a>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="product-custom-col col-12 pt-4 pt-lg-0">
-                <div class="product-category-item">
-                    <a class="product-category-img img-zoom-effect" href="shop.html">
-                        <img src="{{ asset('motoconexion/assets/images/product/top-category/1-6-180x180.png')}}" alt="Top Category">
-                    </a>
-                    <div class="product-category-content pt-5">
-                        <h2 class="title">
-                            <a href="shop.html">Pistons Liners</a>
-                        </h2>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -254,126 +193,38 @@
             <div class="col-lg-9 pt-6 pt-lg-0">
                 <div class="swiper-container special-deals-slider">
                     <div class="swiper-wrapper">
+                        @foreach ($productos as $producto)
                         <div class="swiper-slide product-item special-deals-item">
                             <div class="product-img img-zoom-effect">
-                                <a href="shop.html">
-                                    <img class="img-full" src="{{ asset('motoconexion/assets/images/product/medium-size/special-deals/2-1-290x350.jpg')}}" alt="Product Images">
+                                <a href="">
+                                    <img src="{{ asset('imagen/'.$producto->imagenes[0]->path)}}" alt="" class="img-full">
                                 </a>
                             </div>
                             <div class="product-content">
-                                <a class="product-name pb-1" href="shop.html">Fuel Injector</a>
+                                <a class="product-name pb-1">{{$producto->nombre}}</a>
                                 <div class="price-box">
                                     <div class="price-box-holder">
-                                        <span>Price:</span>
-                                        <span class="new-price text-primary">$130.00</span>
+                                        <span>Precio:</span>
+                                        <span class="new-price text-primary">${{$producto->precio}}</span>
                                     </div>
                                 </div>
                                 <div class="product-add-action">
                                     <ul>
                                         <li>
-                                            <a href="cart.html" data-tippy="Add to cart" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                                            <a href="{{ route('addProducto', $producto->id)}}" data-tippy="Agregar a carrito" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
                                                 <i class="pe-7s-cart"></i>
                                             </a>
                                         </li>
-                                        <li class="quuickview-btn" data-bs-toggle="modal" data-bs-target="#quickModal">
-                                            <a href="#" data-tippy="Quickview" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                                        <li class="quuickview-btn" data-bs-toggle="modal" data-bs-target="#quickModalDetalle1{{$producto->id}}">
+                                            <a href="#" data-tippy="Detalles" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
                                                 <i class="pe-7s-look"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="wishlist.html" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-like"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="compare.html" data-tippy="Add to compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-shuffle"></i>
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide product-item special-deals-item">
-                            <div class="product-img img-zoom-effect">
-                                <a href="shop.html">
-                                    <img class="img-full" src="{{ asset('motoconexion/assets/images/product/medium-size/special-deals/2-2-290x350.jpg')}}" alt="Product Images">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <a class="product-name pb-1" href="shop.html">A/C Compressor</a>
-                                <div class="price-box">
-                                    <div class="price-box-holder">
-                                        <span>Price:</span>
-                                        <span class="new-price text-primary">$150.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-add-action">
-                                    <ul>
-                                        <li>
-                                            <a href="cart.html" data-tippy="Add to cart" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li class="quuickview-btn" data-bs-toggle="modal" data-bs-target="#quickModal">
-                                            <a href="#" data-tippy="Quickview" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-look"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="wishlist.html" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-like"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="compare.html" data-tippy="Add to compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-shuffle"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide product-item special-deals-item">
-                            <div class="product-img img-zoom-effect">
-                                <a href="shop.html">
-                                    <img class="img-full" src="{{ asset('motoconexion/assets/images/product/medium-size/special-deals/2-3-290x350.jpg')}}" alt="Product Images">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <a class="product-name pb-1" href="shop.html">Shock Absorbers</a>
-                                <div class="price-box">
-                                    <div class="price-box-holder">
-                                        <span>Price:</span>
-                                        <span class="new-price text-primary">$120.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-add-action">
-                                    <ul>
-                                        <li>
-                                            <a href="cart.html" data-tippy="Add to cart" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li class="quuickview-btn" data-bs-toggle="modal" data-bs-target="#quickModal">
-                                            <a href="#" data-tippy="Quickview" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-look"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="wishlist.html" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-like"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="compare.html" data-tippy="Add to compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <i class="pe-7s-shuffle"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        </div>                            
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -1094,5 +945,99 @@
     </div>
 </div>
 <!-- Modal Area End Here -->
+
+@foreach ($productos as $producto)
+<div class="modal quick-view-modal fade" id="quickModalDetalle1{{$producto->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="quickModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-wrap row">
+                    <div class="col-lg-6">
+                        <div class="modal-img">
+                            <div class="swiper-container modal-slider">
+                                <div class="swiper-wrapper">
+                                    @foreach ($producto->imagenes as $imagen)
+                                    <div class="swiper-slide">
+                                        <a href="" class="single-img">
+                                            <img class="img-full" src="{{ asset('imagen/'.$imagen->path)}}">
+                                        </a>
+                                    </div>                                        
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="thumbs-arrow-holder">
+                                <div class="swiper-container modal-thumbs">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($producto->imagenes as $imagen)
+                                        <a href="#" class="swiper-slide">
+                                            <img class="img-full" src="{{ asset('imagen/'.$imagen->path)}}">
+                                        </a>                                            
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="thumbs-button-wrap d-none d-md-block">
+                                    <div class="thumbs-button-prev">
+                                        <i class="pe-7s-angle-left"></i>
+                                    </div>
+                                    <div class="thumbs-button-next">
+                                        <i class="pe-7s-angle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pt-9 pt-lg-0">
+                        <div class="single-product-content">
+                            <h2 class="title mb-3">{{$producto->nombre}}</h2>
+                            <div class="price-box pb-3">
+                                <span class="new-price text-danger">${{$producto->precio}}</span>
+                            </div>
+                            <p class="short-desc mb-9">{{$producto->descripcion}}</p>
+                            <ul class="quantity-with-btn pb-9">
+                                <li class="quantity">
+                                    <div class="cart-plus-minus">
+                                        <input type="text" class="cart-plus-minus-box" value="1">
+                                    </div>
+                                </li>
+                                <li class="add-to-cart">
+                                    <a href="" class="btn btn-custom-size lg-size btn-primary">Agregar</a>
+                                </li>
+                            </ul>
+                            <div class="product-category pb-3">
+                                <span class="title">Clave:</span>
+                                <ul>
+                                    <li>
+                                        <a href="#">{{$producto->clave}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="product-category pb-3">
+                                <span class="title">Categoria:</span>
+                                <ul>
+                                    <li>
+                                        <a href="">{{$producto->id_categoria}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="product-category pb-3">
+                                <span class="title">Marca:</span>
+                                <ul>
+                                    <li>
+                                        <a href="">{{$producto->id_marca}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+@endforeach
     
 @endsection

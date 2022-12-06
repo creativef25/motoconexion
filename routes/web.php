@@ -12,11 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('motoconexion.indexT');
+    return redirect()->route('principal');
+});
+
+Route::bind('producto', function($slug){
+    return App\Producto::where('id', $slug)->first();
 });
 
 Auth::routes();
 
+Route::get('', 'CarritoController@principal')->name('principal');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('guardar-marca', 'MarcaController@guardarMarca')->name('guardarMarca');
 Route::delete('eliminar-marca/{id}', 'MarcaController@eliminarMarca')->name('eliminarMarca');
@@ -35,3 +40,5 @@ Route::delete('eliminar-imagen/{id}', 'ImageController@eliminarImagen')->name('e
 Route::put('actualizar-imagen/{id}', 'ImageController@actualizarImagen')->name('actualizarImagen');
 
 Route::post('guardar-datos', 'DatoController@guardarDatos')->name('guardarDatos');
+
+Route::get('add/carrito/{producto}', 'CarritoController@add_producto')->name('addProducto');

@@ -15,8 +15,8 @@ Route::get('/', function () {
     return redirect()->route('principal');
 });
 
-Route::bind('producto', function($slug){
-    return App\Producto::where('id', $slug)->first();
+Route::bind('producto', function($producto){
+    return App\Producto::where('id', $producto)->first();
 });
 
 Auth::routes();
@@ -41,4 +41,8 @@ Route::put('actualizar-imagen/{id}', 'ImageController@actualizarImagen')->name('
 
 Route::post('guardar-datos', 'DatoController@guardarDatos')->name('guardarDatos');
 
-Route::get('add/carrito/{producto}', 'CarritoController@add_producto')->name('addProducto');
+Route::get('add/carrito/{producto}', 'CarritoController@add_producto')->name('addProduc');
+Route::get('show/carrito', 'CarritoController@show_carrito')->name('showCarrito');
+Route::get('eliminar/productos/{producto}', 'CarritoController@eliminar_producto')->name('eliminarProduc');
+
+Route::get('eliminarTodo', 'CarritoController@eliminarTodo')->name('eliminarTodo');

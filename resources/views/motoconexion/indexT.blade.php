@@ -211,7 +211,7 @@
                                 <div class="product-add-action">
                                     <ul>
                                         <li>
-                                            <a href="{{ route('addProducto', $producto->id)}}" data-tippy="Agregar a carrito" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                                            <a href="{{ route('addProduc', $producto->id)}}" data-tippy="Agregar a carrito" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
                                                 <i class="pe-7s-cart"></i>
                                             </a>
                                         </li>

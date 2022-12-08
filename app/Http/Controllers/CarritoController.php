@@ -22,11 +22,40 @@ class CarritoController extends Controller
         return view('motoconexion.indexT', compact('productos', 'categorias'));
     }
 
-    public function add_producto(Producto $produ){
+    public function show_carrito(){
         $carri = \Session::get('carrito');
-        $produ->cantidad = 1;
-        $carri[$produ->id] = $produ;
+        $total = $this->total();
+        return view('motoconexion.showCarrito', compact('carri', 'total'));
+    }
 
-        dd($carri);
+    public function add_producto(Producto $producto){
+        $carri = \Session::get('carrito');
+        $producto->cantidad = 1;
+        $carri[$producto->id] = $producto;
+
+        \Session::put('carrito', $carri);
+
+        return redirect()->route('showCarrito');
+    }
+
+    public function eliminar_producto(Producto $producto){
+        $carri = \Session::get('carrito');
+        unset($carri[$producto->id]);
+        \Session::put('carrito', $carri);
+        return redirect()->route('showCarrito');
+    }
+
+    private function total(){
+        $carri = \Session::get('carrito');
+        $total = 0;
+        foreach ($carri as $value){
+            $total += $value->precio * $value->cantidad;
+        }
+        return $total;
+    }
+
+    public function eliminarTodo(){
+        \Session::flush();
+        return redirect()->route('showCarrito');
     }
 }

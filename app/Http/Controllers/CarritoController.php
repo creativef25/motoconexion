@@ -45,6 +45,13 @@ class CarritoController extends Controller
         return redirect()->route('showCarrito');
     }
 
+    public function actualizar_cantidad(Producto $producto, $cantidad){
+        $carri = \Session::get('carrito');
+        $carri[$producto->id]->cantidad = $cantidad;
+        \Session::put('carrito', $carri);
+        return redirect()->route('showCarrito');
+    }
+
     private function total(){
         $carri = \Session::get('carrito');
         $total = 0;
@@ -52,6 +59,10 @@ class CarritoController extends Controller
             $total += $value->precio * $value->cantidad;
         }
         return $total;
+    }
+
+    public function checkout(){
+        return view('motoconexion.checkout');
     }
 
     public function eliminarTodo(){

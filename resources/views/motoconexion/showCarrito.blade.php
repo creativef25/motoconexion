@@ -32,6 +32,7 @@
                                     <th class="cart-product-name">Producto</th>
                                     <th class="product-price">Precio</th>
                                     <th class="product-quantity">Cantidad</th>
+                                    <th>Actualizar</th>
                                     <th class="product-subtotal">Total</th>
                                 </tr>
                             </thead>
@@ -40,7 +41,7 @@
                                 <tr>
                                     <td class="product_remove">
                                         <a href="{{ route('eliminarProduc', $carritos->id)}}">
-                                            <i class="pe-7s-trash" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i>
+                                            <i class="pe-7s-trash" data-tippy="Eliminar" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i>
                                         </a>
                                     </td>
                                     <td class="product-thumbnail">
@@ -50,7 +51,7 @@
                                     <td class="product-price"><span class="amount">${{$carritos->precio}}</span></td>
                                     <td class="quantity">
                                         <div class="cart-plus-minus">
-                                            <input type="text" class="cart-plus-minus-box" value="{{$carritos->cantidad}}">
+                                            <input type="text" class="cart-plus-minus-box" value="{{$carritos->cantidad}}" id="cantidad_{{$carritos->id}}">
                                             <div class="dec qtybutton">
                                                 <i class="fa fa-minus"></i>
                                             </div>
@@ -58,6 +59,12 @@
                                                 <i class="fa fa-plus"></i>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td class="product_remove">           
+                                        <a class="btn-update" href="#" data-href="{{ route('actualizarCantidad', $carritos->id)}}" data-id="{{$carritos->id}}">
+                                            <i class="pe-7s-refresh-2" data-tippy="Actualizar" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i>
+                                        </a>
+                                         
                                     </td>
                                     <td class="product-subtotal"><span class="amount">${{$carritos->precio * $carritos->cantidad}}</span> </td>
                                 </tr>
@@ -73,6 +80,11 @@
                                 <ul>
                                     <li>Total <span>${{$total}}</span></li>
                                 </ul>
+                                @guest
+                                    <a href="{{ route('login')}}">Ingresar Datos</a>
+                                @else
+                                    <a href="{{ route('checkout')}}">Checkout</a>
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -83,3 +95,20 @@
 </main>
     
 @endsection
+@push('script')
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.btn-update').on('click', function(e){
+        e.preventDefault();
+        
+        var id = $(this).data('id');
+        var href = $(this).data('href');
+        var cantidad = $("#cantidad_"+id).val();
+
+        window.location.href = href + "/" + cantidad;
+    });
+});
+
+</script>
+    
+@endpush

@@ -44,5 +44,8 @@ Route::post('guardar-datos', 'DatoController@guardarDatos')->name('guardarDatos'
 Route::get('add/carrito/{producto}', 'CarritoController@add_producto')->name('addProduc');
 Route::get('show/carrito', 'CarritoController@show_carrito')->name('showCarrito');
 Route::get('eliminar/productos/{producto}', 'CarritoController@eliminar_producto')->name('eliminarProduc');
+Route::get('actualizar/cantidad/{producto?}/{cantidad?}', 'CarritoController@actualizar_cantidad')->name('actualizarCantidad');
+
+Route::get('checkout', 'CarritoController@checkout')->name('checkout');
 
 Route::get('eliminarTodo', 'CarritoController@eliminarTodo')->name('eliminarTodo');

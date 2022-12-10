@@ -28,3 +28,4 @@
     <!--Main JS (Common Activation Codes)-->
     <script src="{{ asset('motoconexion/assets/js/main.js')}}"></script>
     <!-- <script src="assets/js/main.min.js"></script> -->
+    @stack('script')

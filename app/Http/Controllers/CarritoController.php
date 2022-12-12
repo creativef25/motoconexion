@@ -62,7 +62,14 @@ class CarritoController extends Controller
     }
 
     public function checkout(){
-        return view('motoconexion.checkout');
+        $carri = \Session::get('carrito');
+        $total = $this->total();
+        return view('motoconexion.checkout', compact('carri', 'total'));
+    }
+
+    public function productosAll(){
+        $productos = Producto::all();
+        return view('motoconexion.productosAll', compact('productos'));
     }
 
     public function eliminarTodo(){

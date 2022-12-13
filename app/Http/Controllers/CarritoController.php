@@ -68,8 +68,15 @@ class CarritoController extends Controller
     }
 
     public function productosAll(){
-        $productos = Producto::all();
+        $productos = Producto::paginate(6);
         return view('motoconexion.productosAll', compact('productos'));
+    }
+
+    public function detalleProducto($id){
+        $producto = Producto::find($id);
+        $productoS = Producto::inRandomOrder()->take(5)->get();
+
+        return view('motoconexion.detalleProducto', compact('producto', 'productoS'));
     }
 
     public function eliminarTodo(){

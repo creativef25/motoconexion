@@ -50,7 +50,7 @@
                                                             </a>
                                                         </li>
                                                         <li class="quuickview-btn">
-                                                            <a href="" data-tippy="Detalles">
+                                                            <a href="{{ route('detalleProducto', $producto->id)}}" data-tippy="Detalles">
                                                                 <i class="pe-7s-look"></i>
                                                             </a>
                                                         </li>
@@ -66,14 +66,7 @@
                     <div class="pagination-area pt-10">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-end">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">&laquo;</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">&raquo;</a>
-                                </li>
+                                {{$productos->links()}}
                             </ul>
                         </nav>
                     </div>

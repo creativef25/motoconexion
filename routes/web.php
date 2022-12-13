@@ -48,5 +48,6 @@ Route::get('actualizar/cantidad/{producto?}/{cantidad?}', 'CarritoController@act
 
 Route::get('checkout', 'CarritoController@checkout')->name('checkout');
 Route::get('productos', 'CarritoController@productosAll')->name('productosAll');
+Route::get('detalle-producto/{id}', 'CarritoController@detalleProducto')->name('detalleProducto');
 
 Route::get('eliminarTodo', 'CarritoController@eliminarTodo')->name('eliminarTodo');

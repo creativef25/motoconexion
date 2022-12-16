@@ -25,6 +25,7 @@ class CreateDatosTable extends Migration
             $table->string('colonia');
             $table->string('alcaldia');
             $table->string('codigoPostal');
+            $table->boolean('tipo_entrega');
             $table->unsignedBigInteger('id_usuario');
             $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();

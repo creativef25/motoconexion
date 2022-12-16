@@ -50,4 +50,6 @@ Route::get('checkout', 'CarritoController@checkout')->name('checkout');
 Route::get('productos', 'CarritoController@productosAll')->name('productosAll');
 Route::get('detalle-producto/{id}', 'CarritoController@detalleProducto')->name('detalleProducto');
 
+Route::post('actualizar-tipoEntrega', 'CarritoController@actualizarTipoentrega')->name('actualizarTipoentrega');
+
 Route::get('eliminarTodo', 'CarritoController@eliminarTodo')->name('eliminarTodo');

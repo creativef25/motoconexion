@@ -80,6 +80,12 @@
                                     <input type="text" value="{{ empty(Auth::user()->datos->telefono) ? " " : Auth::user()->datos->telefono}}" {{ empty(Auth::user()->datos->telefono) ? " " : "disabled"}}>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="checkout-form-list create-acc">
+                                    <input type="checkbox" id="cbox" value="{{Auth::user()->datos->tipo_entrega}}" {{ Auth::user()->datos->tipo_entrega == 1 ? "checked" : ""}}>
+                                    <label for="cbox">Recoger en tienda</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -123,7 +129,27 @@
         </div>
     </div>
 
-</main>
-
-    
+</main>    
 @endsection
+@push('script')
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    $("#cbox").on('change', function(){
+            var valor = $(this).val();
+
+            axios.post('{{ route('actualizarTipoentrega')}}',{
+                valor:valor
+            }).then(function(e){
+                if (e.data == 0 || e.data == 1){
+                    location.reload();
+                }
+            }).catch(function(er){
+                console.log(er);
+            });
+        });
+    $(document).ready(function(){
+                
+    });
+</script>
+    
+@endpush

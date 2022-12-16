@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Producto;
 use App\Categoria;
+use App\Dato;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -82,5 +83,16 @@ class CarritoController extends Controller
     public function eliminarTodo(){
         \Session::flush();
         return redirect()->route('showCarrito');
+    }
+
+    public function actualizarTipoentrega(Request $re){
+
+        if ($re->valor == "1") {
+            $dato = Dato::where('id_usuario', \Auth::user()->id)->update(['tipo_entrega' => 0]);
+        } else {
+            $dato = Dato::where('id_usuario', \Auth::user()->id)->update(['tipo_entrega' => 1]);
+        }
+        
+        return $dato;
     }
 }

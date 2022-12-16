@@ -51,7 +51,7 @@
                                 </div>
                             </li>
                             <li class="add-to-cart">
-                                <a href="" class="btn btn-custom-size lg-size btn-primary">Agregar</a>
+                                <a href="{{ route('addProduc', $producto->id)}}" class="btn btn-custom-size lg-size btn-primary">Agregar</a>
                             </li>
                         </ul>
                         <div class="product-category pb-3">
@@ -124,7 +124,7 @@
                                                         <span class="new-price text-primary">$ {{$produc->precio}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="product-add-action">
+                                                <div class="product-add-action"> 
                                                     <ul>
                                                         <li>
                                                             <a href="{{ route('addProduc', $produc->id)}}" data-tippy="Agregar a carrito" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">

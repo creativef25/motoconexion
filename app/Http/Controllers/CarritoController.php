@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Producto;
 use App\Categoria;
 use App\Dato;
+use App\Pedido;
+use App\detallePedido;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -94,5 +96,37 @@ class CarritoController extends Controller
         }
         
         return $dato;
+    }
+
+    public function procesarPedido(){
+        
+        $carri = \Session::get('carrito');
+
+        $status = "approved";
+
+        if($status == "approved" || $status == "pending" || $status == "in_process"){
+            $pedido = new Pedido();
+            $pedido->id_usuario = \Auth::user()->id;
+            $pedido->payment_id = '542585';
+            $pedido->status = $status;
+            $pedido->total = $this->total();
+            $pedido->tipo_entrega = \Auth::user()->datos->tipo_entrega;
+            $pedido->save();
+
+            $ped = Pedido::where('id_usuario', \Auth::user()->id)->get()->last();
+
+            foreach ($carri as $value) {
+                $detProd = new detallePedido();
+                $detProd->id_pedido = $ped->id;
+                $detProd->id_producto = $value->id;
+                $detProd->cantidad = $value->cantidad;
+                $detProd->total = $value->precio * $value->cantidad;
+                $detProd->save();
+            }
+
+            \Session::forget('carrito');
+
+            return redirect()->route('showCarrito');
+        }
     }
 }

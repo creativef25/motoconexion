@@ -52,4 +52,6 @@ Route::get('detalle-producto/{id}', 'CarritoController@detalleProducto')->name('
 
 Route::post('actualizar-tipoEntrega', 'CarritoController@actualizarTipoentrega')->name('actualizarTipoentrega');
 
+
 Route::get('eliminarTodo', 'CarritoController@eliminarTodo')->name('eliminarTodo');
+Route::get('procesar-pedido', 'CarritoController@procesarPedido')->name('procesarPedido');

@@ -119,7 +119,7 @@
                         <div class="payment-method">
                             <div class="payment-accordion">
                                 <div class="order-button-payment">
-                                    <input type="submit" value="Place Order">
+                                    <input type="submit" value="Place Order" id="boton">
                                 </div>
                             </div>
                         </div>
@@ -146,10 +146,13 @@
             }).catch(function(er){
                 console.log(er);
             });
-        });
-    $(document).ready(function(){
-                
     });
+
+    $("#boton").click(function(){
+        window.location.href = "{{route('procesarPedido')}}";
+    });
+
+
 </script>
     
 @endpush
